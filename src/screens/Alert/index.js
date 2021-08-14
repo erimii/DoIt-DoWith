@@ -1,34 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Styled from 'styled-components/native';
-import titleIcon from '../../images/icons/ic-home-title.png';
+import InvitationModal from './InvitationModal';
 
 const Container = Styled.ScrollView`
     margin-left: 16px;
 `;
-const TitleContainer = Styled.View`
-    flex-direction: row;
-    margin: 28px 0 23px 0;
-`;
 
-const TitleIcon = Styled.Image``;
-
-const PageTitle = Styled.Text`
-    font-family: 'Pretendard-Black';
-    font-size: 21px;
-    line-height: 25px;
-    color: #303030;
-    margin-left: 9px;
+const ButtonContainer = Styled.TouchableOpacity`
+    background: red;
+    width: 100px;
+    height: 100px;
 `;
 
 const Alert = ({navigation}) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
     return(
         <Container>
-            <TitleContainer>
-                <TitleIcon source={titleIcon} />
-                <PageTitle>
-                    알림 
-                </PageTitle>
-            </TitleContainer>
+            <ButtonContainer onPress={() => setModalVisible(true)}/>
+            <InvitationModal 
+                modalVisible={modalVisible} 
+                setModalVisible={setModalVisible} 
+            />
         </Container>
     );
 };
