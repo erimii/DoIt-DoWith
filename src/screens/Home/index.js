@@ -10,7 +10,7 @@ const Container = Styled.View``;
 
 const TitleContainer = Styled.View`
     flex-direction: row;
-    margin: 28px 0 27px 16px;
+    margin: 26px 0 26px 16px;
 `;
 
 const TitleIcon = Styled.Image``;
@@ -20,6 +20,7 @@ const Title = Styled.Text`
     font-size: 21px;
     line-height: 25px;
     color: #303030;
+    margin-left:8px;
 `;
 
 const TabContainer = Styled.View`
@@ -30,6 +31,7 @@ const LabelWrapper = Styled.TouchableOpacity`
     align-items: center;
     border-color:#4388EE;
     margin-right: 12px;
+    padding-bottom: 4px;
 `;
 const Label = Styled.Text`
     font-family: 'Pretendard-Black';

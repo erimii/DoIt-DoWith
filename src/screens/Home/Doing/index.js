@@ -1,14 +1,15 @@
 import React from 'react';
 import Styled from 'styled-components/native';
 import {useNavigation} from "@react-navigation/native";
-import testImg from '../../../images/img/home-test-img.png';
-import testProfile from '../../../images/icons/ic-home-title.png';
+import pageTitleIcon from '../../../images/img/home-test-img.png';
+import {gridWidth} from '../../../values';
+import Button from '../../../components/Button';
 
 const Container = Styled.ScrollView``;
 
 const BackImage = Styled.ImageBackground`
     margin: 0 16px 22px 16px;
-    padding: 24px 0 20px 16px;
+    padding: 20px 0 20px 16px;
 `;
 
 const Title = Styled.Text`
@@ -18,30 +19,55 @@ const Title = Styled.Text`
     color: #1D1D1D;
 `;
 
-const AdditionalInfoContainer = Styled.View`
-    flex-direction: row;
-    align-items: center;
-`;
-
-const AdditionalInfo = Styled.Text`
+const DateInfo = Styled.Text`
     font-family: 'Pretendard-Regular';
-    font-size: 10px;
-    line-height: 12px;
-    color: #30353D;
+    font-size: 11px;
+    line-height: 13px;
+    color: #80868F;
+    margin: 8px 0 12px 0;
 `;
 
-const VerticalLine = Styled.View`
-    width: 0.5px;
-    height:6px;
-    background: #999999;
-    margin: 0 6px;
+const CertificationInfo = Styled.Text`
+    font-family: 'Pretendard-Medium';
+    font-size: 11px;
+    line-height: 13px;
+    color: #484B50;
+    margin: 0 0 8px 0;
 `;
 
-const ProfileImgContainer = Styled.View`
+const ProfileImagesContainer = Styled.View`
     flex-direction: row;
 `;
 
-const ProfileImg = Styled.Image``;
+const ProfileImg = Styled.Image`
+    width: 21px;
+    height: 21px;
+    background:#ffffff;
+    border-radius: 88px;
+    margin-right: 6px;
+`;
+
+const ProfileImgWrapper = Styled.View``;
+
+const ImgWrapper = Styled.View`
+    position: absolute;
+    justify-content: center;
+    align-items:center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(67, 136, 238, 0.3);
+    width: 21px;
+    height: 21px;
+    border-radius: 88px;
+`;
+
+const CheckIcon = Styled.Image`
+    width: 7px;
+    height: 7px;
+    background: pink;
+`;
 
 const ButtonWrapper = Styled.View`
   position: absolute;
@@ -51,52 +77,53 @@ const ButtonWrapper = Styled.View`
   bottom: -10px;
 `;
 
-const ChatButton = Styled.TouchableOpacity`
-background: #4388EE;
-padding: 11px 27px;
-border-top-left-radius: 4px;
-border-bottom-left-radius: 4px;
-
-`;
-
-const ButtonLabel = Styled.Text`
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-color: #FFFFFF;
-`;
-
 const Doing = ({}) => {
     const navigation = useNavigation();
     return(
         <Container>
-            <BackImage source={testImg} imageStyle={{ borderRadius: 8, opacity:0.6}}>
+            <BackImage source={pageTitleIcon} imageStyle={{ borderRadius: 8, opacity:0.6}}>
                 <Title>
                     레모나와 함께하는 
                 </Title>
-                <Title style={{fontSize:16, lineHeight:19}}>
+                <Title style={{fontSize:16, lineHeight:19, marginTop:2}}>
                     일상을 건강하게 비타민 충전
                 </Title>
-                <AdditionalInfoContainer>
-                    <AdditionalInfo>
-                        2021.08.02. ~ 2021.08.15.
-                    </AdditionalInfo>
-                    <VerticalLine />
-                    <AdditionalInfo>
-                        매일
-                    </AdditionalInfo>
-                </AdditionalInfoContainer>
-                <ProfileImgContainer>
-                    <ProfileImg source={testProfile} />
-                    <ProfileImg source={testProfile} />
-                </ProfileImgContainer>
+
+                <DateInfo>
+                    8/9(월)부터 1주 동안 매일
+                </DateInfo>
+
+                <CertificationInfo>
+                    오늘 인증 현황
+                </CertificationInfo>
+
+                <ProfileImagesContainer>
+                    <ProfileImgWrapper>
+                        <ProfileImg />
+                        <ImgWrapper>
+                            <CheckIcon />
+                        </ImgWrapper>
+                    </ProfileImgWrapper>
+                    <ProfileImgWrapper>
+                        <ProfileImg />
+                    </ProfileImgWrapper>
+                </ProfileImagesContainer>
 
                 <ButtonWrapper>
-                    <ChatButton onPress={() => {navigation.navigate('ChatRoom')}}>
-                        <ButtonLabel>
-                            [두잇나우! 렛츠두잇!]
-                        </ButtonLabel>
-                    </ChatButton>
+                    <Button 
+                        label='아직 안 했어!'
+                        onPress={() => {navigation.navigate('ChatRoom')}}
+                        buttonStyle={{
+                            paddingTop:11,
+                            paddingBottom:12,
+                            width: gridWidth*3+48
+                        }}
+                        labelStyle={{
+                            fontFamily: 'Pretendard-SemiBold',
+                            fontSize: 14,
+                            lineHeight: 17
+                        }}
+                    />
                 </ButtonWrapper>
             </BackImage>
         
