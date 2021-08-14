@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import {createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { NavigationContainer, DefaultTheme, useNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { windowWidth } from '../values';
 
@@ -27,30 +28,35 @@ const Drawer = createDrawerNavigator();
 const MyTheme = {
     ...DefaultTheme,
     colors: {
-      ...DefaultTheme.colors,
-      background: '#ffffff',
+        ...DefaultTheme.colors,
+        background: '#ffffff',
     },
-  };
+};
 
 const noHeaderOptions = {
-    headerShown:false
-  }
+    headerShown: false
+}
 
-  const LoginStack = () => {
-    return (
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={noHeaderOptions}
-        />
-      </Stack.Navigator>
-    );
-  };
+// const LoginStack = () => {
+//     return (
+//         <Stack.Navigator>
+//             <Stack.Screen
+//                 name="Login"
+//                 component={Login}
+//                 options={noHeaderOptions}
+//             />
+//         </Stack.Navigator>
+//     );
+// };
 
 const MainStack = () => {
-    return(
+    return (
         <Stack.Navigator>
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={noHeaderOptions}
+            />
 
             <Stack.Screen
                 name='Tabs'
@@ -67,7 +73,7 @@ const MainStack = () => {
             <Stack.Screen
                 name="Certification"
                 component={Certification}
-                options={{title: 'Certification'}}
+                options={{ title: 'Certification' }}
             />
 
             {/* mission */}
@@ -75,7 +81,7 @@ const MainStack = () => {
             <Stack.Screen
                 name="MissionDetail"
                 component={MissionDetail}
-                options={{title: 'MissionDetail'}}
+                options={{ title: 'MissionDetail' }}
             />
 
             {/* other */}
@@ -83,7 +89,7 @@ const MainStack = () => {
             <Stack.Screen
                 name="Alert"
                 component={Alert}
-                options={{title: 'Alert'}}
+                options={{ title: 'Alert' }}
             />
 
         </Stack.Navigator>
@@ -91,10 +97,10 @@ const MainStack = () => {
 }
 
 
-const Tabs = () =>{
-    return(
+const Tabs = () => {
+    return (
         <BottomTab.Navigator
-            screenOptions={{ 
+            screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
@@ -102,7 +108,7 @@ const Tabs = () =>{
                     elevation: 10,
                 }
             }}
-        > 
+        >
             <BottomTab.Screen
                 name="Home"
                 component={Home}
@@ -124,17 +130,17 @@ const Tabs = () =>{
 };
 
 const MainNavigator = () => {
-    return(
+    return (
         <Drawer.Navigator
             screenOptions={{
-                drawerPosition:"right",
-                drawerType:"front",
-                headerShown:false,
-                drawerStyle:{
+                drawerPosition: "right",
+                drawerType: "front",
+                headerShown: false,
+                drawerStyle: {
                     width: windowWidth - 8
                 }
             }}
-            drawerContent={(props) => <ChatRoomDrawer props={props}/>}
+            drawerContent={(props) => <ChatRoomDrawer props={props} />}
         >
             <Drawer.Screen
                 name="MainStack"
@@ -144,11 +150,12 @@ const MainNavigator = () => {
     )
 }
 
-export default () => {
 
-    return(
+export default () => {
+    
+    return (
         <NavigationContainer theme={MyTheme} >
-            {1 ?<MainNavigator/> :<LoginStack/>}
+            <MainNavigator /> 
         </NavigationContainer>
     )
 }

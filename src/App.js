@@ -1,16 +1,22 @@
-import React, {Fragment} from 'react';
-import {StatusBar} from 'react-native';
+import React, { Fragment } from 'react';
+import { StatusBar } from 'react-native';
 import Navigator from './screens/navigator';
-import Styled from 'styled-components/native';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './store/rootReducer';
 
-
+const store = configureStore({
+  reducer: rootReducer
+});
 
 const App = () => {
   return (
-    <Fragment>
-      <StatusBar barStyle="default" />
-      <Navigator />
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <StatusBar barStyle="default" />
+        <Navigator />
+      </Fragment>
+    </Provider>
   );
 };
 export default App;
